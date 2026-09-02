@@ -1,0 +1,35 @@
+[project]
+name = "hillstrom-uplift"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "Kimlong42", email = "42.kimlong@gmail.com" }]
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.11.1",
+    "pandas>=3.0.5",
+    "scikit-learn>=1.9.0",
+    "scikit-uplift>=0.5.1",
+    "scipy>=1.18.1",
+    "seaborn>=0.13.2",
+    "statsmodels>=0.15.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.26,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+    "nbstripout>=0.9.1",
+    "pre-commit>=4.6.2",
+    "pytest>=9.1.1",
+    "ruff>=0.16.5",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"] # I = tự sort import, thay isort

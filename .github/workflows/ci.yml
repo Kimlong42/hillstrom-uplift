@@ -1,0 +1,28 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Cài dependencies theo lockfile
+        run: uv sync
+
+      - name: Cache data
+        uses: actions/cache@v4
+        with:
+          path: data/
+          key: hillstrom-v1
+
+      - name: Tải data nếu cache miss
+        run: uv run python -c "from hillstrom_uplift.data import download; download()"
+
+      - name: Lint
+        run: uv run ruff check src tests
+
+      - name: Test
+        run: uv run pytest -v
